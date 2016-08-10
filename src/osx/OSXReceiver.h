@@ -40,9 +40,6 @@ public:
         ofAddListener(syphonDir.events.serverAnnounced, this, &Receiver::syphonAnnounced);
         ofAddListener(syphonDir.events.serverRetired, this, &Receiver::syphonRetired);
     }
-    
-<<<<<<< HEAD
-=======
     void syphonAnnounced(ofxSyphonServerDirectoryEventArgs &arg) {
         
         for (auto& dir : arg.servers) {
@@ -69,8 +66,7 @@ public:
         bChanged = true;
         cout << "syphon retired -- " << inputs.size() << endl;
     }
-    
->>>>>>> win32
+	
     void update() {
         if (bChanged && inputs.size() > 0) {
             cout << "syphon set -- " << curtIndex << endl;
@@ -81,14 +77,11 @@ public:
     void next() {
         bChanged = false;
     }
-    
-<<<<<<< HEAD
-=======
+	
     void exit() {
         
     }
-    
->>>>>>> win32
+	
     bool isChanged() {
         return bChanged;
     }
@@ -125,37 +118,6 @@ public:
     string getActiveInput() {
         return curtIndex < inputs.size() ? inputs[ curtIndex ] : "";
     }
-<<<<<<< HEAD
     
 private:
-    
-    void syphonAnnounced(ofxSyphonServerDirectoryEventArgs &arg) {
-        
-        for (auto& dir : arg.servers) {
-            inputs.push_back( dir.appName );
-        }
-        
-        bChanged = true;
-        cout << "syphon annouced -- " << inputs.size() << endl;
-    }
-    
-    void syphonRetired(ofxSyphonServerDirectoryEventArgs &arg) {
-        
-        for (auto& dir : arg.servers) {
-            string name = dir.appName;
-            
-            for (int i = inputs.size() - 1; i >= 0; i--) {
-                if (inputs[i] == name) {
-                    inputs.erase( inputs.begin() + i );
-                }
-            }
-        }
-        
-        curtIndex = 0;
-        bChanged = true;
-        cout << "syphon retired -- " << inputs.size() << endl;
-    }
-    
-=======
->>>>>>> win32
 };

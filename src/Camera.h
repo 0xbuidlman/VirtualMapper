@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef __videoMappingPreview__Camera__
-#define __videoMappingPreview__Camera__
+#pragma once
+
 
 #include <stdio.h>
 #include <iostream>
@@ -19,12 +19,9 @@
 using namespace std;
 
 class Camera {
-	
 public:
 	string name;
 	ofVec3f position;
 	ofVec3f euler;
 	float fov;
 };
-
-#endif

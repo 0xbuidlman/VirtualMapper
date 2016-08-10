@@ -21,11 +21,7 @@ void ofApp::setGUI() {
     isShowWireframe = true;
 	isWindowOnTop = true;
 	isFlipH = false;
-#ifdef TARGET_OSX
 	isFlipV = false;
-#elif defined TARGET_WIN32
-	isFlipV = true;
-#endif
 	
 	//gui->setPadding(3);
 	gui->setColorBack(ofxUIColor(80, 80, 80, 200));
@@ -37,7 +33,6 @@ void ofApp::setGUI() {
 	gui->addLabelButton("3D LOAD", false)->setLabelText("select 3d file..");
 	gui->addSpacer();
 
-#ifdef TARGET_OSX
 	gui->addLabel("Source");
 	ddlInput = gui->addDropDownList("INPUT LIST", emptyList);
 	ddlInput->setAllowMultiple(false);
@@ -45,14 +40,11 @@ void ofApp::setGUI() {
 	ddlInput->setShowCurrentSelected(true);
 	ddlInput->setLabelText("");
 	gui->addSpacer();
-#endif
 	
 	gui->addLabel("Display");
     gui->addToggle("show wireframe", &isShowWireframe);
     gui->addToggle("show gird", &isShowGrid);
-#ifdef TARGET_OSX
 	gui->addToggle("make window on top",&isWindowOnTop);
-#endif
 	gui->addWidgetDown(new ofxUIToggle("flip H", &isFlipH, 18, 18));
 	gui->addWidgetRight(new ofxUIToggle("flip V", &isFlipV, 18, 18));
 	gui->addSpacer();
@@ -245,7 +237,7 @@ void ofApp::resetCam() {
 	
 	grabCam.reset();
 	grabCam.setFov(55);
-	grabCam.setFixUpwards(true);
+	grabCam.setFixUpDirectionEnabled(true);
 	grabCam.setPosition(500, 500, -500);
 	
 	camIndex = CAM_INDEX_DEFAULT;

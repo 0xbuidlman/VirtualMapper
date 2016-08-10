@@ -5,10 +5,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-#ifdef TARGET_OSX
-	ofSetDataPathRoot("../Resources/data/");
-#endif	
-
 	camKeys[0] = '1'; camKeys[1] = '2'; camKeys[2] = '3';
 	camKeys[3] = '4'; camKeys[4] = '5'; camKeys[5] = '6';
 	camKeys[6] = '7'; camKeys[7] = '8'; camKeys[8] = '9';
@@ -21,8 +17,8 @@ void ofApp::setup(){
 	
 	// load
 	settings.load("settings.xml");
-	font.loadFont(FONT_NAME, 10);
-    defaultTex.loadImage("default_texture.png");
+	font.load(FONT_NAME, 10);
+    defaultTex.load("default_texture.png");
 	
 	// ui
 	setGUI();
@@ -60,8 +56,8 @@ void ofApp::update(){
         w = receiver.getWidth();
         h = receiver.getHeight();
     } else {
-        w = defaultTex.width;
-        h = defaultTex.height;
+        w = defaultTex.getWidth();
+        h = defaultTex.getHeight();
     }
 	
 	if (texWidth != w || texHeight != h) {
@@ -70,10 +66,6 @@ void ofApp::update(){
 		scaleScreenUV();
 	}
 	
-<<<<<<< HEAD
-=======
-#ifdef TARGET_OSX
->>>>>>> win32
 	if ( receiver.isChanged() ) {
         
         // update input list
@@ -81,20 +73,13 @@ void ofApp::update(){
         
         ddlInput->clearToggles();
         for (string i : inputs) {
-<<<<<<< HEAD
             ddlInput->addToggle( i );
-        }
-
-        ddlInput->addToggles( receiver.getInputs() );
-        ddlInput->setLabelText( (receiver.getActiveInput()).substr(0, DDL_MAX_LENGTH) );
-	}
-=======
+			ddlInput->addToggles( receiver.getInputs() );
+			ddlInput->setLabelText( (receiver.getActiveInput()).substr(0, DDL_MAX_LENGTH) );
             ddlInput->addToggle( i.substr(0, DDL_MAX_LENGTH) );
         }
         ddlInput->setLabelText( (receiver.getActiveInput()).substr(0, DDL_MAX_LENGTH) );
 	}
-#endif
->>>>>>> win32
 	
 	// gui update
 	camPos = grabCam.getPosition();
@@ -215,10 +200,6 @@ void ofApp::exit() {
 //--------------------------------------------------------------
 void ofApp::guiEvent(ofxUIEventArgs &e) {
 	
-	if (this == NULL) {
-		return;
-	}
-	
 	string name = e.widget->getName();
 	
 	if ( name == "3D LOAD" && !isModalOpened ) {
@@ -242,13 +223,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e) {
             alert("This file type is not supported.");
         }
 		
-<<<<<<< HEAD
 	} else if (name == "INPUT LIST") {
-=======
-	}
-#ifdef TARGET_OSX
-	else if (name == "INPUT LIST") {
->>>>>>> win32
 		
 		vector<int> indices = ddlInput->getSelectedIndeces();
 		
@@ -256,9 +231,7 @@ void ofApp::guiEvent(ofxUIEventArgs &e) {
             
             receiver.setInput( indices[0] );
 		}
-	}
-#endif
-	else if ( name == "flip H" || name == "flip V" ) {
+	} else if ( name == "flip H" || name == "flip V" ) {
 		
 		cout << "change uv flip settings" << endl;
 		scaleScreenUV();
@@ -312,7 +285,6 @@ void ofApp::guiEvent(ofxUIEventArgs &e) {
 }
 
 //--------------------------------------------------------------
-<<<<<<< HEAD
 
 /*
 void ofApp::syphonAnnounced(ofxSyphonServerDirectoryEventArgs &arg) {
@@ -372,8 +344,6 @@ void ofApp::syphonRetired(ofxSyphonServerDirectoryEventArgs &arg)
 
 
 //--------------------------------------------------------------
-=======
->>>>>>> win32
 void ofApp::keyPressed(int key){
 	
 }
@@ -430,14 +400,14 @@ void ofApp::mousePressed(int x, int y, int button){
 	
 	if ( rect->inside(x, y) ) {
 		
-		grabCam.setMouseActions( false );
+		grabCam.setMouseActionsEnabled( false );
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
 
-	grabCam.setMouseActions( true );
+	grabCam.setMouseActionsEnabled( true );
 }
 
 //--------------------------------------------------------------

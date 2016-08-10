@@ -8,22 +8,11 @@
 #include "ofxXmlSettings.h"
 #include "ofxGrabCam.h"
 
-// my class
 #include "Camera.h"
+#include "OSXReceiver.h"
+#include "OSXWindow.h"
 
-
-#ifdef TARGET_OSX
-    #include "OSXReceiver.h"
-    #include "OSXWindow.h"
-#elif defined TARGET_WIN32
-    #include "Win32Receiver.h"
-    #include "Win32Window.h"
-#endif
-
-
-#ifdef TARGET_OSX
-    #include "OSXWindow.h"
-#endif
+#include "OSXWindow.h"
 
 // constants
 #define FONT_NAME "Arial.ttf"
@@ -118,13 +107,7 @@ public:
 	
 	// ui
 	ofxUICanvas *gui;
-<<<<<<< HEAD
 	ofxUIDropDownList *ddlInput;//, *ddlCamList;
-=======
-#ifdef TARGET_OSX
-	ofxUIDropDownList *ddlInput;
-#endif
->>>>>>> win32
 	ofxUILabel *lblScreenName;
 	ofxUINumberDialer *ndCamX, *ndCamY, *ndCamZ;
 	ofxUIMinimalSlider *msCamFov, *msCamH, *msCamP, *msCamB;
